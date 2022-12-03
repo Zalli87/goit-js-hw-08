@@ -5,7 +5,7 @@ const textarea = document.querySelector('.feedback-form textarea');
 const input = document.querySelector('.feedback-form input');
 
 const formData = {};
-console.log(formData);
+
 
 getLocalStorageFormData();
 
