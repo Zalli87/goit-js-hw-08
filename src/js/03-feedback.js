@@ -20,7 +20,12 @@ function onFormIntutChange(evt) {
 
 function onFormSubmit(evt) {
     evt.preventDefault();
-    localStorage.removeItem('feedback-form-state')
+    localStorage.removeItem('feedback-form-state');
+    if (!evt.currentTarget.message.value || !evt.currentTarget.email.value) {
+        alert('Все поля должны быть заполнены!');
+        evt.currentTarget.reset();
+        return
+    }
     evt.currentTarget.reset();
     console.log(formData);
     formData.email = '';
@@ -30,9 +35,7 @@ function onFormSubmit(evt) {
 function getLocalStorageFormData() {
     const savedFormData = localStorage.getItem('feedback-form-state');
     const parseData = JSON.parse(savedFormData);
-   
-
-    if (parseData) {
+   if (parseData) {
         const { email, message } = parseData;
         formData.email = parseData.email ? email : '';
         formData.message = parseData.message ? message : '';
